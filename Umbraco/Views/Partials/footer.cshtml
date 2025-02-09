@@ -1,0 +1,56 @@
+﻿@inherits UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var homePage = Model.AncestorOrSelf<ContentModels.Home>();
+}
+
+<!-- Footer-->
+<footer style=" background:#5c5c5c; padding-top:0; padding-bottom:0; " >
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-md-6 col-lg-4 col-xl-6" >
+          @*       @if (homePage.Logo != null)
+                {
+                      <img src="@(homePage.Logo.Url())" alt="@homePage.Logo" style="width: 265px; max-width: 26%; 
+    display: inline-block;
+    vertical-align: middle; margin-left:200px;" class="w-100" />
+                }*@
+             @if (homePage.Mission != null)
+                {
+           <span style="color:white;">       <p class="small text-center text-muted fst-italic">@homePage.Mission</p></span>  
+                }
+          </div>
+            <div class="col-md-6 col-lg-4 col-xl-6" style="padding-top: 0rem;">
+            
+               @if (homePage.Kontakt != null)
+                {
+                   <span style="color:white; padding-top: 6rem;">        <p class="small text-center text-muted fst-italic">@homePage.Kontakt</p></span>
+                }
+              
+            </div>
+        </div>
+     
+    </div>
+    
+   
+</footer>
+
+<footer style="background:white; padding-top:0; padding-bottom:0;" >
+     <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-6 col-lg-4 col-xl-6">
+                  <p class="small text-left text-muted">@Umbraco.GetDictionaryValue("Footer.CopyrightTitle") &copy; @DateTime.Now.Year @Umbraco.GetDictionaryValue("Footer.CopyrightStatement")</p>
+            </div>  
+               <div class="col-md-6 col-lg-4 col-xl-6" style="padding-top: 1rem;">
+                @if (homePage.SocialIconLinks != null && homePage.SocialIconLinks.Any())
+                {
+                    <ul class="list-inline text-center">
+                        @Html.GetBlockListHtml(homePage.SocialIconLinks)
+                    </ul>
+                }
+              
+            </div>
+        </div>
+    </div>
+</footer>
